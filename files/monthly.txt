@@ -1,0 +1,18 @@
+Please write a complete program to calculate monthly payment given
+The following formula
+
+Monthly Pay=[ rate +  rate /([1+rate]^months -1)] X principle
+Where  rate of %6 means 6/1200
+And
+Months means number of years x 12
+Make the program user friendly. You may write method and call a method to
+Do the job.
+Possible data to test:
+Principle   12200
+Rate          7
+Term in years  5
+Monthly payment is: 241.57
+Total Payment is:14494.48
+Interest Expense is 2294.48
+
+

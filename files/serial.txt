@@ -1,0 +1,11 @@
+Write a Complete program for the following specification:
+   The SerialNumber class takes a serial number in
+   the form of  LLLLLLLLLLLL-DDDDDDDDD-LLLLLLLLL where each L is a letter
+   and each D is a digit. The serial number has three groups
+   of characters, separated by hyphens.
+Note: This time any number of letters followed by  - followed by any number of digit followed by – followed by any number of letters.
+Example:
+      String serial1= "GHFFFFFTRJ-8978888885-AQTTTTWR"; // Valid
+      String serial2 = "GHT7J-8975-AQWR"; // Invalid
+      String serial3 = "GHTRJ-8J75-AQWR"; // Invalid
+      String serial4 = "GHTRJ-8975-AQ2R"; // Invalid

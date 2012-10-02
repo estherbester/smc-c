@@ -1,0 +1,2 @@
+Write a program that accepts 20 double number. Compute the largest number, the smallest, and
+Compute average of all 20 numbers.
