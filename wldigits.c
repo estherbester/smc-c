@@ -3,6 +3,29 @@
 
 #include <stdio.h>
 
+
+int count_whitespace(int iochar)
+{
+    int numwhites = 0;
+
+    if ((iochar==' ')||(iochar=='\t')||(iochar=='\n'))
+    {
+        numwhites = 1;
+    }
+    return numwhites;
+}
+
+void print_summary( int numwhites, int numdigits, int numlower, int numupper)
+{
+    printf("%d white characters, \n%d digits, \n", numwhites, numdigits);
+    printf("%d lowercase have been converted to ", numlower);
+    printf("uppercase and \n %d uppercase.\n", numupper);
+
+    printf("\n\n");
+
+
+}
+
 int main(void)
 {
     int iochar,
@@ -15,19 +38,19 @@ int main(void)
 
     while((iochar=getchar())!=EOF)
     {
-        if ((iochar=' ')||(iochar='\t')||(iochar='\n'))
+        if ((iochar==' ')||(iochar=='\t')||(iochar=='\n'))
         {
-            numwhites++;
+            numwhites += count_whitespace(iochar);
             putchar(iochar);
         }
         else
-           if((iochar>='0')&&(iochar<='9'))
+           if((iochar>='0') && (iochar<='9'))
            {
             numdigits++;
             putchar(iochar);
             }
            else
-              if(('a'<=iochar)&&(iochar<='z'))
+              if(('a'<=iochar) && (iochar<='z'))
               {
                numlower++;
                putchar(iochar-32);
@@ -42,17 +65,15 @@ int main(void)
                   putchar(iochar);
     }
 
-    printf("%d white characters, %d digits, ",numwhites,numdigits);
-    printf("%d lowercase have been converted to ",numlower);
-    printf("uppercase and %d uppercase.\n",numupper);
 
-    printf("\n\n");
-
+    print_summary(numwhites, numdigits, numlower, numupper);
 
     return 0;
 }
 
+/*
 Execute the program in its present form using input for which it is easy to predict the output.
 Analyze the program from the output obtained through the testing and tentatively make some changes.
 Retest it until you are sure that the bugs are out.
 Rewrite the program in more structured way. It should have more than one function.
+*/
