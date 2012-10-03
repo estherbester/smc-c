@@ -26,7 +26,8 @@ double calc_monthly(double principal, double interest_rate, int years)
     return monthly_pay;
 }
 
-/* returns total amount paid over the term of the loan, given the monthly payment */
+/* returns total amount paid over the term of the loan,
+   given the monthly payment */
 double calc_total(double monthly, int years)
 {
     return monthly * (years * 12);

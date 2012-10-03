@@ -10,11 +10,11 @@ int main(void)
   y= (double)(a+b)/(a-b);
   printf("a===>>%d\nb===>%d\ny==>%f\n"
   ,a,b,y);
-  
-  
-  
-  
-  
+
+
+
+
+
 
 
 

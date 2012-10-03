@@ -1,47 +1,63 @@
 /*
+Esther Nam
 
+Get 20 double numbers
 Write a program that accepts 20 double number. Compute the largest number, the smallest, and
 Compute average of all 20 numbers.
 
 */
 
-
 #include <stdio.h>
 
+#define NUMBER_OF_NUMBERS 20
 
-double calc_average(array_num)
-{
-    double sum = 0;
-    int length = len(array_num);
-    /*
 
-    for num in num
-        sum += num
-    */
+double get_number(void);
 
-    return sum / length;
+int main (void) {
+    int i=0;
+    double number,
+           largest,
+           smallest,
+           total_sum = 0,
+           average = 0;
 
+    for (i; i < NUMBER_OF_NUMBERS; i++)
+    {
+        number = get_number();
+        // First time around we will say the largest and smallest are the first number
+        if (i==0) {
+            largest = number;
+            smallest = number;
+        }
+        else
+        {
+
+            if (number > largest) {
+                largest = number; // re-assign "largest" to this new, bigger number
+            }
+            if (number < smallest) {
+                smallest = number; // re-assign smallest to this tinier number
+            }
+            total_sum += number; // keep a running sum
+        }
+    }
+    // sort the numbers to get largest, smallest
+
+    average = (float) total_sum / NUMBER_OF_NUMBERS ;
+    printf("\nYou entered %d numbers:\n", NUMBER_OF_NUMBERS);
+    printf("\tThe largest is: %lf\n", largest);
+    printf("\tThe smallest is: %lf\n", smallest);
+    printf("\tThe average is: %lf\n", average);
 }
 
 
-int main (void){
-    array array_num;
-    double num1, num2;
-    double largest, smallest, average;
+double get_number(void)
+{
+    double number = 0;
 
-    /* do this twenty times
-        printf('Enter number 1: ');
-        scanf("%lf", &num1);
-        push into array
-    */
+    printf("Enter a positive number (of type double): ");
+    scanf("%lf", &number);
 
-
-    // sort the numbers to get largest, smallest
-    // largest =
-    // smallest =
-    average = calc_average(array_num);
-    printf("The largest is: %lf\n", largest);
-    printf("The smallest is: %lf\n", smallest);
-    printf("The average is: %lf", average);
-
+    return number;
 }
