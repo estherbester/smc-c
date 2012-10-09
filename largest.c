@@ -9,7 +9,6 @@ Largest Int
 #include <stdlib.h>
 #include <string.h>
 #define END_CHAR 0
-#define SEPARATOR ' '
 
 
 // Given an integer, the running max, and the running max_count, determine
@@ -35,31 +34,30 @@ int main (void)
 {
     int max,
         max_count=0, // Initialize the max count
-        number;
+        number,
+        initialized = 0;
 
+     printf("Enter a series of numbers, space-separated. Enter '0' as the last number: ");
 
-     printf("Enter a series of one-digit numbers, space-separated. Enter '0' as the last number: ");
-
-     // User inputs numbers, which we read one character at a time until they hit "Enter"
-     while ((number=getchar()) != '\n'){
-        // 0 is the last digit so we know to stop.
-        if (number != END_CHAR)
-        {
-            // Discount spaces
-            if (number != SEPARATOR)
-            {
-                stat_number(number, &max, &max_count);
-            }
+     // User inputs numbers, which we read until they hit "Enter"
+     while (scanf("%d", &number) != '\n'){
+        // The first number that is inputted is set to the max by default.
+        // This block will only be evaluated once.
+        if (initialized == 0){
+            max = number;
+            initialized = 1;
         }
-
+        // If the value is 0, we know to stop.
+        if (number != END_CHAR )
+            stat_number(number, &max, &max_count);
+        else
+            break;  // No more waiting for or processing input!
      }
 
      // Output the results: the max and the max_count
-    printf("\nThe largest number is ");
-    putchar(max);
+    printf("\nThe largest number is %d", max);
 
-    printf("\n");
-    printf("The occurrence of the largest number is %d\n", max_count);
+    printf("\nThe occurrence of the largest number is %d\n", max_count);
 
     return 0;
 }
