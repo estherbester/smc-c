@@ -6,10 +6,9 @@
 #define MAX_THROWS 10000
 
 
-//int throw_dice(void);
-
 void stat_the_array(int * rolls);
 
+int throw_dice(void);
 
 void reset_throw_count(int * throw_count_array) {
 
