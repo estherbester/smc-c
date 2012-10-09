@@ -11,78 +11,55 @@ Largest Int
 #define END_CHAR 0
 #define SEPARATOR ' '
 
+
+// Given an integer, the running max, and the running max_count, determine
+// whether the number is bigger than the current max.
 void stat_number (int number, int * max, int * max_count)
 {
-    printf("Number is %d, max is %d\n", number, *max);
+    // If the number is greater than max, assign it to max and reset count to 1.
     if (number > *max) {
         *max = number;
-        printf("New max is %d\n", *max);
-
+        *max_count = 1;  // Need to reset the max_count to this new max.
     }
-    else
+    else // If the number is equal to max, increment count by 1.
     {
         if (number == *max)
-            printf("Max is still %d\n", *max);
-
-            { *max_count = number;}
+        {
+            *max_count += 1;
+        }
     }
 
 }
 
 int main (void)
 {
-    int number = 1,  // initialize so that max and number go throguh the do-while loop once
-        max=0,
-        max_count=0,
-        first_flag = 0;
-    char input,
-         series[] = "";
+    int max,
+        max_count=0, // Initialize the max count
+        number;
 
-    printf("Enter a series of numbers separated by a space; enter 0 to finish: \n");
 
-    input = getchar();
+     printf("Enter a series of one-digit numbers, space-separated. Enter '0' as the last number: ");
 
-    if (input != SEPARATOR) {
-        number = putchar(input);
-
-        printf("Number: %d\n", number);
-
-        if (first_flag == 0) { max = number; first_flag = 1;}
-
-        //stat_number(number, &max, &max_count);
-
-    }
-    // If the input is not a space, then keep going
-    // If the input is a space, process the number
-    // If the char is 0, the end
-    else {
-        if(input == putchar('0')){
-            printf("the end");
+     // User inputs numbers, which we read one character at a time until they hit "Enter"
+     while ((number=getchar()) != '\n'){
+        // 0 is the last digit so we know to stop.
+        if (number != END_CHAR)
+        {
+            // Discount spaces
+            if (number != SEPARATOR)
+            {
+                stat_number(number, &max, &max_count);
+            }
         }
-        else {
 
-        }
-    }
-    printf("Largest number is %d\n", max);
+     }
+
+     // Output the results: the max and the max_count
+    printf("\nThe largest number is ");
+    putchar(max);
+
+    printf("\n");
     printf("The occurrence of the largest number is %d\n", max_count);
-
-    /*
-     get the input:
-
-     scanf string
-
-
-     parse the input for integers:
-
-
-     for each integer:
-        if integer > max
-            max = integer
-        else
-            if integer == max
-                max_count++
-
-    */
 
     return 0;
 }
