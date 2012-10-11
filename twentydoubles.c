@@ -22,10 +22,10 @@ int main (void) {
            total_sum = 0,
            average = 0;
 
-    for (i; i < NUMBER_OF_NUMBERS; i++)
+    for (i=0; i < NUMBER_OF_NUMBERS; i++)
     {
         number = get_number();
-        // First time around we will say the largest and smallest are the first number
+        // The first time around, we will set the largest and smallest to the first number we get.
         if (i==0) {
             largest = number;
             smallest = number;
@@ -39,11 +39,11 @@ int main (void) {
             if (number < smallest) {
                 smallest = number; // re-assign smallest to this tinier number
             }
-            total_sum += number; // keep a running sum
+            total_sum += number; // keep a running sum of all the numbers
         }
     }
-    // sort the numbers to get largest, smallest
 
+    // Sort the numbers to get largest, smallest
     average = (float) total_sum / NUMBER_OF_NUMBERS ;
     printf("\nYou entered %d numbers:\n", NUMBER_OF_NUMBERS);
     printf("\tThe largest is: %lf\n", largest);
@@ -51,7 +51,7 @@ int main (void) {
     printf("\tThe average is: %lf\n", average);
 }
 
-
+/* Fetches user input */
 double get_number(void)
 {
     double number = 0;

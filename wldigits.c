@@ -1,4 +1,10 @@
-/*The purpose of the following program is to count the whitespace, the digits, the uppercase alphabetics and lowercase alphabetics in the input. There are bugs in the program. FIX IT
+/*
+
+Esther Nam
+CS 50 TuTh
+Fall 2012
+
+The purpose of the following program is to count the whitespace, the digits, the uppercase alphabetics and lowercase alphabetics in the input. There are bugs in the program. FIX IT
 */
 
 #include <stdio.h>
@@ -38,6 +44,7 @@ int main(void)
 
     while((iochar=getchar())!=EOF)
     {
+        // FIX: changed assignment to equality for each of the three conditionals.
         if ((iochar==' ')||(iochar=='\t')||(iochar=='\n'))
         {
             numwhites += count_whitespace(iochar);
@@ -65,7 +72,7 @@ int main(void)
                   putchar(iochar);
     }
 
-
+    // FIX: Broke out the print statements into their own function.
     print_summary(numwhites, numdigits, numlower, numupper);
 
     return 0;
