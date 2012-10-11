@@ -61,7 +61,7 @@ int main(void) {
         second_is_valid=0,
         third_is_valid=0;
 
-    printf("Enter the serial number: ");
+    printf("Enter the serial number: \n");
     while ((ch=getchar()) != '\n') {
         if (ch == SEPARATOR)
             hyphen_count++;
@@ -69,23 +69,31 @@ int main(void) {
         {
             case 0:
                 first_is_valid += validate_string(ch);
+                break;
             case 1:
-                if (first_is_valid < 12)  // then we don't have enough letters
-                {   printf ("\nInvalid! First part is not all letters\n");
-                    break;
+                if (first_is_valid != 12)  // then we don't have enough letters
+                {   
+                    printf ("\nFirst part of the key is invalid! First part should contain 12 letters\n");
+                    return 0;
                 }
                 second_is_valid += validate_num(ch);
+                break;
             case 2:
                 third_is_valid += validate_string(ch);
-                if (second_is_valid < 9)
+                if (second_is_valid != 9)
                 {
-                    printf ("\nInvalid! Second part is not all numbers\n");break;
+                    printf ("\nSecond part of the key is invalid! Second part should contain 9 numbers\n");
+                    return 0;
                 }
-            case 3:
-                if (third_is_valid < 9)
-                {
-                    printf ("\nInvalid! Third part is not all numbers\n");break;
-                }
+                break;
         }
     }
+    // Presumably the user has hit "Enter" after entering the third part of the serial number.
+    if (third_is_valid == 9) { // If the user typed exactly 9 letters: 
+        printf("Key is in a valid format. Your copy of Adobe Photoshop has been unlocked!\n"); 
+    } else {
+        printf ("\nThird part of the key is invalid! Third part should contain 9 letters\n");
+    }
+    
+    return 0;
 }
