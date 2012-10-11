@@ -14,29 +14,18 @@ Validates a serial number based on its formatting.
 #include <ctype.h>
 #define SEPARATOR '-'
 
-
-
-    /*
-        validate first input as letter
-        validate length of letter input as 12
-
-        validate second input as digit
-        validate lenght of digit input as 9
-
-        validate third input as letter
-        validate length of letter input as 9
-
-    */
-
-
 /*
     get input from user
-    first 12 must be letter
-    then hyphen
-    second 9 must be digit
-    then hyphen
-    third 9 must be letter
+        first 12 must be letters
+        then hyphen
+        second 9 must be digits
+        then hyphen
+        third 9 must be letters
 
+*/
+
+/*
+returns 1 if the input is a digit, to increment the tracker
 */
 int validate_num (int ch)
 {
@@ -46,6 +35,10 @@ int validate_num (int ch)
         return 0;
 }
 
+
+/*
+returns 1 if the input is a character, to increment the tracker
+*/
 int validate_string (int ch)
 {
     if (isalpha(ch))
@@ -72,7 +65,7 @@ int main(void) {
                 break;
             case 1:
                 if (first_is_valid != 12)  // then we don't have enough letters
-                {   
+                {
                     printf ("\nFirst part of the key is invalid! First part should contain 12 letters\n");
                     return 0;
                 }
@@ -89,11 +82,11 @@ int main(void) {
         }
     }
     // Presumably the user has hit "Enter" after entering the third part of the serial number.
-    if (third_is_valid == 9) { // If the user typed exactly 9 letters: 
-        printf("Key is in a valid format. Your copy of Adobe Photoshop has been unlocked!\n"); 
+    if (third_is_valid == 9) { // If the user typed exactly 9 letters:
+        printf("Key is in a valid format. Your copy of Adobe Photoshop has been unlocked!\n");
     } else {
         printf ("\nThird part of the key is invalid! Third part should contain 9 letters\n");
     }
-    
+
     return 0;
 }
