@@ -14,7 +14,7 @@ Generates a two digit lottery number, asks user to guess a two-digit number.
 
 
 #include <stdio.h>
-#include <libc.h>
+#include <time.h>
 
 #define EXACT_MATCH "$10,000"
 #define BOTH_MATCH "$3,000"
