@@ -11,7 +11,7 @@ Fall 2012
 
 
 #include <stdio.h>
-#include <libc.h>
+#include <time.h>
 #include <ctype.h>
 
 #define CORRECT1 "Very good!"
