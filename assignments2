@@ -1,0 +1,170 @@
+DiceProblemjavaandC.doc
+
+ Programming Project ?
+
+One of the most popular games of chance is a dice game known as “craps,” which is played in casinos and back alleys throughout the world.
+The rules of the game are straightforward:
+
+A player rolls two dice.  Each die has six faces.  These faces contain 1,2,3,4,5, and 6 spots.  After the dice have come to rest, the sum of the spots on the two upward faces is calculated.  If the sum is 7 or 11 on the first throw, the player wins.  If the sum is 2,3, or 12 on the first throw (called “craps”), the player loses (i.e., the “house” wins).  If the sum is 4,5,6,8,9, or 10 on the first throw, then that sum becomes the player’s “points.”  To win, you must continue rolling the dice until you “make your points.”  The player loses by rolling a 7 before making the points.
+
+Make a program to simulate the game of craps for 100 times and print number of the wins in first roll, lost in first roll, wins with points, and lost with points.
+
+
+1. Roll dice
+2.  Sum of two dice = points
+3. if sum == 7 or sum == 11 on first throw: WIN
+4. if sum == 2 or sum == 3 or sum == 12: lose
+5. if sum == 4, 5, 6, 8, 9 or 10: += points
+6. 2
+
+
+====================================================================================================
+AverageGrade
+
+Write a complete program that prompts how many students? reads the number.
+Make a loop for that many students, prompts the first student for name and how many tests, get name, number of tests. Make a loop to sum all of her/his tests and compute the average of her/his test. Your program should output student name, test average and a letter grade. NOTE: to get credit you must write at least one function.
+Note: To assign the letter grade use (if  average >= 90, A, >=80, B etc.).
+
+
+=====================================================================================================
+
+Dehkhoda.doc
+
+Page 248/Prob. 6
+6. Write a menu-driven mini-statistics package. A user should be able to enter up to 200 items of float data.  The program should calculate the number of items in the data, the mean, the standard deviation, the variance, the median, and the mode of the data. A sample run follows. The symbol <EOF> in the sample run below should be replaced with CTRL-Z or CTRL-D or the end-of-file symbol on your system.
+Mini-Stat Package
+-----------------------
+This program will perform the following:
+Enter data.
+Display the data and the following statistics:
+the number of date item, the high and low values in the data, the mean, median, mode, variance and standard deviation.
+Quit the Program
+--------------------------------------------------------------------------------------------------------------------------------
+Your Choice? 1
+Enter one data item after each prompt. Press return after each one. Signal with <EOF> when you are done with data input.
+Item #1     :    25
+ Item #2    :    36
+Item #3     :    27.5
+Item #4     :    28
+Item #5     :    32
+Item #6     :    33.25
+Item #7     :    <EOF>
+This program will perform the following:
+Enter data.
+Display the data and the following statistics:
+the number of date item, the high and low values in the data, the mean, median, mode, variance and standard deviation.
+Quit the Program
+
+
+Page 254/ Prob.12
+12.  a. Write a C function that will input values into an array of type int. Have the array and the number of elements in the array passed as parameters to your function. Use a local pointer variable to traverse the array.
+b. Write a C function that will output the contents of an array of type int. Have the array and the number of elements in the array passed as parameters. Use a local pointer variable to traverse the array.
+Page 294/ Prob. 8
+8.      a.  Write a function in C that takes an array of char and a char ** expression as parameters. The array of type char would contain a string the possibly starts with a sequence of decimal digits. Have the function convert the sequence of decimal digits it finds to type int and return the converted value. Have the function set the contents of its second parameter (a char * value) to point to the first character in the array that was not converted. For example, if the function was called convert () and the call to convert () was
+        intval = convert (array, & charptr);
+    where array contained the string
+274ADAMS/0
+    then after the call, intval would contain the 274, and charptr would point to the ‘A’ in the string.
+Page 568/Prob. 1
+Exercises and Programming Problems
+The program cp.c makes a copy of a file. It uses getc () and putc () to do the input and output. Write four new versions of a file copy program. Each of the programs should have the same functionality as cp.c
+
+In the first version, use fgetc () to do the input and fputc () to do the output.
+
+In the second version, use fgets () to do the input and fputs () to do the output.
+
+In the third version, use fread () to do the input and fwrite () to do the output.
+
+In the fourth version, use fscanf () to do the input and fprintf () to do the output.
+
+Compare the sizes of the object code from all five versions of the file copy programs. If the facilities for testing execution efficiency are available on your system, test the efficiency of each version. Report on your findings.
+
+
+
+====================================================================================================
+
+Extra Credit
+Write a complete C programming to add two very large numbers together as follows:
+Enter the first number
+1999999999999999999999999999999999999999999996667766999999
+Enter the second number
+888888888888888888888888888888888888888888888888888888888888888888888888
+Sum is
+Display the total here
+
+Hint you should use Struct and malloc.
+
+================================================================================================
+ProjectCreditCard
+
+
+Problem Description:
+Credit card numbers follow certain patterns. A credit card number must have between 13 and 16 digits. It must start with:
+4 for Visa cards
+5 for Master cards
+37 for American Express cards
+6 for Discover cards
+
+In 1954, Hans Luhn of IBM proposed an algorithm for validating credit card numbers. The algorithm is useful to determine if a card number is entered correctly or if a credit card is scanned correctly by a scanner. Almost all credit card numbers are generated following this validity check, commonly known as the Luhn check or the Mod 10 check, which can be described as follows (for illustration, consider the card number 4388576018402626):
+
+1. Double every second digit from right to left. If doubling of a digit results in a two-digit number, add up the two digits to get a single-digit number.
+2 * 2 = 4
+2 * 2 = 4
+4 * 2 = 8
+1 * 2 = 2
+6 * 2 = 12 (1 + 2 = 3)
+5 * 2 = 10 (1 + 0 = 1)
+8 * 2 = 16 (1 + 6 = 7)
+4 * 2 = 8
+
+2. Now add all single-digit numbers from Step 1.
+4 + 4 + 8 + 2 + 3 + 1 + 7 + 8 = 37
+
+3. Add all digits in the odd places from right to left in the card number.
+   6 + 6 + 0 + 8 + 0 + 7 + 8 + 3 = 38
+
+4. Sum the results from Step 2 and Step 3.
+37 + 38 = 75
+
+5. If the result from Step 4 is divisible by 10, the card number is valid; otherwise, it is invalid. For example, the number 4388576018402626 is invalid, but the number 4388576018410707 is valid.
+
+Write a program that prompts the user to enter a credit card number as a long integer. Display whether the number is valid or invalid.
+
+Here are sample runs of the program:
+
+Sample 1:
+Enter a credit card number as a long integer: 4246345689049834
+4246345689049834 is invalid
+
+Sample 2:
+Enter a credit card number as a long integer: 4388576018410707
+4388576018410707 is valid
+
+
+===================================================================================
+Extra Credit Maze
+
+
+Assignment
+
+(Maze Traversal) The following grid of #s and dot  ( . ) is a double-subscripted array representation of a maze.
+
+#  #  #  #  #  #  #  #  #  #  #  #
+#  .  .  .  #  .  .  .  .  .  .  #
+.  .  #  .  #  .  #  #  #  #  .  #
+#  #  #  .  #  .  .  .  .  #  .  #
+#  .  .  .  .  #  #  #  .  #  .  .
+#  #  #  #  .  #  .  #  .  #  .  #
+#  .  .  #  .  #  .  #  .  #  .  #
+#  #  .  #  .  #  .  #  .  #  .  #
+#  .  .  .  .  .  .  .  .  #  .  #
+#  #  #  #  #  #  .  #  #  #  .  #
+#  .  .  .  .  .  .  #  .  .  .  #
+#  #  #  #  #  #  #  #  #  #  #  #
+
+
+In the preceding double-subscripted array, the #s represent the walls of the maze and the dots represent squares in the possible paths through the maze.  Moves can only be made to a location in the array that contain a dot.
+
+    There is a simple algorithm for walking through a maze that guarantees finding the exit (assuming there is an exit). If there is not an exit, you will arrive at the starting location again. Place your right hand on the wall to your right and begin walking forward. Never remove your hand from the wall.  If the maze turns to the right, you follow the wall to the right.  As long as you do not remove your hand from wall, eventually you will arrive at the exit of the maze.  There may be a shorter path than the one you have taken, but you are guaranteed to get out of the maze if you follow the algorithm.
+
+    Write recursive function mazeTraverse to walk through the maze.  The function should receive as arguments a 12-by-12 character array representing the maze, and the starting location of the maze.  As mazeTraverse attempts to locate the exit from the maze, it should place the character X in each square in the path.  The function should display the maze after each move so the user can watch as the maze is solved.
