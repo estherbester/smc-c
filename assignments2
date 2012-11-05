@@ -1,21 +1,4 @@
-DiceProblemjavaandC.doc
 
- Programming Project ?
-
-One of the most popular games of chance is a dice game known as “craps,” which is played in casinos and back alleys throughout the world.
-The rules of the game are straightforward:
-
-A player rolls two dice.  Each die has six faces.  These faces contain 1,2,3,4,5, and 6 spots.  After the dice have come to rest, the sum of the spots on the two upward faces is calculated.  If the sum is 7 or 11 on the first throw, the player wins.  If the sum is 2,3, or 12 on the first throw (called “craps”), the player loses (i.e., the “house” wins).  If the sum is 4,5,6,8,9, or 10 on the first throw, then that sum becomes the player’s “points.”  To win, you must continue rolling the dice until you “make your points.”  The player loses by rolling a 7 before making the points.
-
-Make a program to simulate the game of craps for 100 times and print number of the wins in first roll, lost in first roll, wins with points, and lost with points.
-
-
-1. Roll dice
-2.  Sum of two dice = points
-3. if sum == 7 or sum == 11 on first throw: WIN
-4. if sum == 2 or sum == 3 or sum == 12: lose
-5. if sum == 4, 5, 6, 8, 9 or 10: += points
-6. 2
 
 
 ====================================================================================================
@@ -80,20 +63,6 @@ In the fourth version, use fscanf () to do the input and fprintf () to do the ou
 Compare the sizes of the object code from all five versions of the file copy programs. If the facilities for testing execution efficiency are available on your system, test the efficiency of each version. Report on your findings.
 
 
-
-====================================================================================================
-
-Extra Credit
-Write a complete C programming to add two very large numbers together as follows:
-Enter the first number
-1999999999999999999999999999999999999999999996667766999999
-Enter the second number
-888888888888888888888888888888888888888888888888888888888888888888888888
-Sum is
-Display the total here
-
-Hint you should use Struct and malloc.
-
 ================================================================================================
 ProjectCreditCard
 
@@ -141,6 +110,20 @@ Enter a credit card number as a long integer: 4388576018410707
 4388576018410707 is valid
 
 
+====================================================================================================
+
+Extra Credit
+Write a complete C programming to add two very large numbers together as follows:
+Enter the first number
+1999999999999999999999999999999999999999999996667766999999
+Enter the second number
+888888888888888888888888888888888888888888888888888888888888888888888888
+Sum is
+Display the total here
+
+Hint you should use Struct and malloc.
+
+
 ===================================================================================
 Extra Credit Maze
 
@@ -168,3 +151,20 @@ In the preceding double-subscripted array, the #s represent the walls of the maz
     There is a simple algorithm for walking through a maze that guarantees finding the exit (assuming there is an exit). If there is not an exit, you will arrive at the starting location again. Place your right hand on the wall to your right and begin walking forward. Never remove your hand from the wall.  If the maze turns to the right, you follow the wall to the right.  As long as you do not remove your hand from wall, eventually you will arrive at the exit of the maze.  There may be a shorter path than the one you have taken, but you are guaranteed to get out of the maze if you follow the algorithm.
 
     Write recursive function mazeTraverse to walk through the maze.  The function should receive as arguments a 12-by-12 character array representing the maze, and the starting location of the maze.  As mazeTraverse attempts to locate the exit from the maze, it should place the character X in each square in the path.  The function should display the maze after each move so the user can watch as the maze is solved.
+
+
+
+
+========================================================================
+
+DiceProblemjavaandC.doc
+
+ Programming Project ?
+
+One of the most popular games of chance is a dice game known as “craps,” which is played in casinos and back alleys throughout the world.
+The rules of the game are straightforward:
+
+A player rolls two dice.  Each die has six faces.  These faces contain 1,2,3,4,5, and 6 spots.  After the dice have come to rest, the sum of the spots on the two upward faces is calculated.  If the sum is 7 or 11 on the first throw, the player wins.  If the sum is 2,3, or 12 on the first throw (called “craps”), the player loses (i.e., the “house” wins).  If the sum is 4,5,6,8,9, or 10 on the first throw, then that sum becomes the player’s “points.”  To win, you must continue rolling the dice until you “make your points.”  The player loses by rolling a 7 before making the points.
+
+Make a program to simulate the game of craps for 100 times and print number of the wins in first roll, lost in first roll, wins with points, and lost with points.
+
