@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <string.h>
 
 void get_student_grades(int i);
 void get_name(void);
@@ -28,6 +29,17 @@ int main (void){
     return 0;
 }
 
+int get_number_of_tests(void){
+
+    int number_of_tests = 0;
+
+    printf("How many tests have you taken? ");
+    scanf("%i", &number_of_tests);
+    printf("\n");
+    printf("You have taken %i tests.", number_of_tests);
+    printf("\n");
+    return number_of_tests;
+}
 
 /*
     returns {array} characters
@@ -40,14 +52,18 @@ void get_student_grades(int i){
     printf("%i", i);
     get_name();
     number_of_tests = get_number_of_tests();
-    tests_sum = get_test_grades(number_of_tests);
+    tests_sum = 90;//get_test_grades(number_of_tests);
     letter_grade = calculate_grade(tests_sum, number_of_tests);
 
 }
 
 void get_name(void){
+    char name[20];
+
     printf("What is the student's name? ");
     // get the name and put it in the array.
+    scanf("%s", name);
+    printf("Name: %s\n", name);
 }
 
 char calculate_grade(double tests_sum, int number_of_tests){
