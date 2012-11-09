@@ -45,6 +45,17 @@ int main (void)
         printf("\nFirst throw:");
 
         throw = throw_dice();
+        results = validate_throw(throw);
+        
+        printf("\n");
+    }
+    print_results(first_wins, first_losses, wins_with_points, lost_with_points);
+    return 0;
+}
+
+// TODO: change the vars into the pointers since we've nwo moved this into its own function
+int validate_throw(throw) {
+
 
         if (throw == 7 || throw == 11)
         {
@@ -70,12 +81,12 @@ int main (void)
             {
                 lost_with_points++;
             }
+           
         }
-        printf("\n");
-    }
-    print_results(first_wins, first_losses, wins_with_points, lost_with_points);
-    return 0;
+
+
 }
+
 
 /*
     Prints the final results after 100 throws
