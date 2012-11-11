@@ -14,30 +14,26 @@
 #include <stdlib.h>
 #include <time.h>
 
+
 #define MAX_THROWS 100
 
 int throw_dice(void);
-void print_results(int wins, int losses, int wins_with_points, int lost_with_points);
+void validate_throw(int, int*);
 int throw_for_points(int points);
-
+void print_results(int * results );
 
 
 /*
-
+    Iterates through 100 rounds
 */
 int main (void)
 {
     srand(time(NULL));
 
-
     int i,
         throw,
-        second_throw,
-        first_wins = 0,
-        first_losses = 0,
-        wins_with_points = 0,
-        lost_with_points = 0;
-
+    	results[4] = {0,0,0,0}; // array containing 4 values for each of the possible resultswhich should thus be initialized 
+		
     // i represents the round to be recorded
     for (i=0; i < MAX_THROWS; i++)
     {
@@ -45,29 +41,42 @@ int main (void)
         printf("\nFirst throw:");
 
         throw = throw_dice();
-        results = validate_throw(throw);
+        validate_throw(throw, results);
         
         printf("\n");
     }
-    print_results(first_wins, first_losses, wins_with_points, lost_with_points);
+    print_results(results);
     return 0;
 }
 
-// TODO: change the vars into the pointers since we've nwo moved this into its own function
-int validate_throw(throw) {
+/* 
+* Given the throw, prints the results of the throw and records the result in the 
+* "results" array, which has values as follows:
+*
+*  results[0] - wins
+*  results[1] - losses
+*  results[2] - wins from making points
+*  results[3] - losses from not making points
+* 
+*  @param {int} value of the throw
+*  @param {pointer} to the array containing the results of which we are keeping track.
+*/
+void validate_throw(int throw, int * results) {
 
-
+		int second_throw;
+		
         if (throw == 7 || throw == 11)
         {
             printf("\nYou threw %i - you won!", throw);
-            first_wins++;
+            results[0]++; // increment the value of "Win on first throw"
         }
         else if (throw == 2 || throw == 3 || throw == 12)
         {
             printf("\nYou threw %i - you lost!", throw);
-            first_losses++;
+            results[1]++; // increment the value of "Losses on first throw"
         }
-        else {
+        else
+		{
             printf("; you have to make %i points:", throw);
 
             // now we have to try to make points
@@ -75,24 +84,28 @@ int validate_throw(throw) {
 
             if (second_throw == 1)
             {
-                wins_with_points++;
+				results[2]++; // increment the value of "Wins iwth points"
             }
             else
             {
-                lost_with_points++;
+				results[3]++; // increment the value of "Losses iwth points"
             }
-           
         }
-
-
 }
 
 
 /*
-    Prints the final results after 100 throws
+    Prints the final results after all the throws
+
+	@param {ptr} array containing the results of all the throws
 */
-void print_results(int wins, int losses, int wins_with_points, int lost_with_points)
+void print_results(int * results) 
 {
+	int wins = results[0], 
+		losses = results[1],
+		wins_with_points = results[2],
+		lost_with_points = results[3];
+
     printf("\n==============");
     printf("\nFINAL RESULTS:");
     printf("\n==============");
@@ -108,7 +121,7 @@ void print_results(int wins, int losses, int wins_with_points, int lost_with_poi
 /*
     Prints the result of the dice throw
 
-    returns {int} the sum of the result
+    @returns {int} the sum of the result
 */
 int throw_dice(void)
 {
@@ -117,13 +130,15 @@ int throw_dice(void)
     die1 = rand() % 6 + 1;
     die2 = rand() % 6 + 1;
     printf("\nYou rolled a %i and %i", die1, die2);
+
     return die1 + die2;
 }
 
 /*
     Handles the second round of throws (to "make points")
-    param {int} points that we have to match
-    returns {int} if we throw 7, return 0; otherwise, we made points! so return 1
+	
+    @param {int} points that we have to match
+    @returns {int} if we throw 7, return 0; otherwise, we made points! so return 1
 */
 int throw_for_points(int points)
 {
@@ -133,7 +148,6 @@ int throw_for_points(int points)
     do
     {
         throw = throw_dice();
-        //printf(">> You threw %i", throw);
 
         if (throw == points){
             printf("\n>> You made points!");
