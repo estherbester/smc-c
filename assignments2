@@ -18,7 +18,7 @@ Page 248/Prob. 6
 Mini-Stat Package
 -----------------------
 This program will perform the following:
-Enter data.
+Enter data.2
 Display the data and the following statistics:
 the number of date item, the high and low values in the data, the mean, median, mode, variance and standard deviation.
 Quit the Program
@@ -38,6 +38,7 @@ Display the data and the following statistics:
 the number of date item, the high and low values in the data, the mean, median, mode, variance and standard deviation.
 Quit the Program
 
+--------------------------------------------------------------------------------------------------------------------------------
 
 Page 254/ Prob.12
 12.  a. Write a C function that will input values into an array of type int. Have the array and the number of elements in the array passed as parameters to your function. Use a local pointer variable to traverse the array.

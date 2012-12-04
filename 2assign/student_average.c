@@ -3,13 +3,21 @@
 #include <stdio.h>
 #include <string.h>
 
+
+/*
+
+Present a menu of commands
+Get student name
+Get number of tests
+Compute average of tests
+Output a letter grade
+*/
+
 void get_student_grades(int i);
 void get_name(void);
 
 int get_number_of_tests(void); // asks how many tests taken
-
 void get_test_grades(int); // gets grade eof each test taken
-
 char calculate_grade(double, int); // calculate the average grade and returns letter grade
 
 
