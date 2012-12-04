@@ -30,26 +30,27 @@ int sum_two_digits(int number);
 int add_odd_digits (char * number);
 void check_digits (char * number);
 int char_to_int(char character);
+void debug(int error_code, char * message);
 
 
 
 /*
-    
+    Gets credit card input from command line
+
+    Validates length, digit, and credit card type. If any of these checks fails, program exits.
+
+    Validates legitimacy of number using Luhn algorithm.
 */
 void main (int argc, char * argv[])
 {
 	if (argc < 2) {
-		printf("Please enter a credit card number\n");
-		exit(1);
+		debug(1, "Please enter a credit card number");
 	}
-    
-    int luhn = 1; // Set a default of 1 which presents card as "invalid"
-    
+
+    int valid = 1; // Set a default of 1 which presents card as "invalid"
     char * cc_number = argv[1];
-	
-    printf("\n");
+
 	printf("You entered: %s", cc_number);
-	printf("\n");
 
     // Check length of credit card number
     validate_cc_length(cc_number);
@@ -61,14 +62,12 @@ void main (int argc, char * argv[])
 	validate_card_type(argv[1]);
 
     // Check Luhn which gives us the checksum % 10
-    luhn = run_luhn_algorithm(argv[1]);
+    valid = run_luhn_algorithm(argv[1]);
 
-	printf("\n");
-
-    if (luhn == 0)
-        { printf("Card is valid!\n" ); }
+    if (valid == 0)
+        { debug(0, "Card is valid!" ); }
     else
-        { printf("Card is not valid. You are trying to commit fraud!\n"); }
+        { debug(0, "Card is not valid. You are trying to commit fraud!!!"); }
 
 }
 
@@ -81,17 +80,18 @@ void main (int argc, char * argv[])
 */
 void validate_cc_length(char * number)
 {
-    int min_length = 13, 
+    int min_length = 13,
    	    max_length = 16,
-	    cc_length = strlen(number),
-	    valid = 0;
+	    cc_length = strlen(number);
+    char error_msg[50];
 
-    printf("\nNumber is %lu digits long\n", strlen(number));
+    sprintf(error_msg, "Number is %lu digits long", strlen(number));
+    debug(0, error_msg);
 
     // Number must have more digits than the minimum, fewer than the maximum
 	if (cc_length < min_length || cc_length > max_length)
     {
-		printf("Number is not the right length\n"); exit(1);
+		debug(1, "Number is not the right length");
     }
 }
 
@@ -104,13 +104,15 @@ void validate_cc_length(char * number)
 */
 void validate_card_type(char * number)
 {
-    int card_type, 
-        first_number = char_to_int(number[0]); 
-    
-    char * types[] = { "Visa", "Mastercard", "Discover", "American Express" };
+    int card_type,
+        first_number = char_to_int(number[0]);
 
-    printf("\n");
-       
+    char * types[] = { "Visa",
+                       "Mastercard",
+                       "Discover",
+                       "American Express" },
+            debug_msg[50];
+
     switch (first_number)
     {
         case 4:
@@ -122,6 +124,7 @@ void validate_card_type(char * number)
         case 6:
             card_type = 2;
             break;
+        // AmEx cards must begin with "37"
         case 3:
             if (number[1] == '7')
             {
@@ -129,50 +132,58 @@ void validate_card_type(char * number)
             }
             else
             {
-                printf("Number does not begin with a valid digit\n"); exit(1);
+                debug(1, "Number does not begin with valid prefix");
             }
             break;
         default:
-            printf("Number does not begin with a valid digit\n"); exit(1);
+            debug(1, "Number does not begin with a valid digit");
 	}
-    printf("You entered a(n) %s card.\n", types[card_type]);
+    sprintf(debug_msg, "Your card: %s.\n", types[card_type]);
+    debug(0, debug_msg);
 }
 
 
-/* 
+/*
     This function calls each step of the Luhn Algorithm.
 
     param {string} Credit card number
-    return {int} The result of the Luhn checksum % 10 
-                
+    return {int} The result of the Luhn checksum % 10
+
 */
 int run_luhn_algorithm(char * number)
 {
-    int valid = 0;
-	int sum = 0;
+    int valid = 0,
+        sum = 0;
+
+    char debug_msg[50];
 
 	// Run Steps 1 and 2 of the Luhn Algorithm
 	sum += double_every_even_digit(number);
-    
+
 	// Run Step 3
 	sum += add_odd_digits(number);
-	printf("\n");
-    printf("Final sum after adding every odd-position digit: %i\n", sum);  
 
-	// Run Step 4
+    sprintf(debug_msg, "Final sum after adding every odd-position digit: %i\n", sum);
+    debug(0, debug_msg);
+
+    // Run Step 4
     return sum % 10;
 
 }
 
 
 /*
+    This function returns the sum of the doubled value of every other digit.
+    If the doubled digit is a two-digit number, find the sum of each digit.
 
+    param {string} Credit card number
+    return {int} Sum of every other digit, doubled.
 */
 int double_every_even_digit (char * number)
 {
 	int i,
         digit,
-        doubled_digit, 
+        doubled_digit,
         sum = 0;
 
 	for (i = strlen(number)-2; i >= 0; i-=2)
@@ -195,22 +206,22 @@ int double_every_even_digit (char * number)
 */
 int sum_two_digits(int number)
 {
-    int sum = 0, 
+    int sum = 0,
         ones_digit = 0;
 
     ones_digit = number % 10;
 
     sum += ones_digit;
-    sum += (number - ones_digit)/10;  
+    sum += (number - ones_digit)/10;
 
-    return sum; 
+    return sum;
 
 }
 
 
 /*
     Luhn Algorithm Step 3: Add all digits in odd places from right to left
-    
+
     param {string} credit card number
     return {int} sum of the odd digits
 
@@ -229,7 +240,7 @@ int add_odd_digits (char * number)
 
 
 /*
-
+    Given a string, check each character in the string to see if it is a digit
 */
 void check_digits (char * number)
 {
@@ -239,9 +250,7 @@ void check_digits (char * number)
     {
         if (!isdigit(number[i]))
         {
-          
-			printf("\nInvalid card number: non-digit found: %i\n)", number[i]);
-			exit(1);
+            debug(1, "Invalid card number: non-digit found");
         }
         i++;
     }
@@ -249,7 +258,7 @@ void check_digits (char * number)
 
 
 /*
-     Given a char representing a numeral, return the number value
+     Given a char representing a numeral, return the number value of the char
 */
 int char_to_int(char character)
 {
@@ -257,10 +266,36 @@ int char_to_int(char character)
     {
         return character - '0';
     }
-    else 
+    else
     {
-        printf("\nInvalid character given.\n");
-        exit(1);
+        debug(1, "Invalid character given");
     }
 }
 
+/*
+    Called when any errors are raised in the program.
+
+    param {int} Error code -- 1 makes you exit. Anything else does nothing.
+    param {char *} Error message
+
+*/
+
+void debug(int error_code, char * message)
+{
+    printf("\n");
+    switch (error_code)
+    {
+        case 1:
+        {
+            printf("Error: %s. Exiting now.", message);
+            exit(1);
+        }
+        case 0:
+        {
+            printf("%s", message);
+            break;
+        }
+    }
+    printf("\n");
+
+}
