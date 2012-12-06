@@ -31,8 +31,6 @@ struct student_record
 };
 
 
-
-
 struct student_record get_student_record();
 void get_name(char *);
 int get_number_of_tests(void);
@@ -41,6 +39,7 @@ double get_test_grade(int);
 double calculate_average(double tests_sum, int number_of_tests);
 char get_letter_grade(double testValue);
 void print_student_records(struct student_record student_records[], int);
+
 
 int main(void)
 {
@@ -70,7 +69,8 @@ int main(void)
 
 }
 
-
+// Constructs student record by calling various functions
+// Returns {struct student_record}
 struct student_record get_student_record()
 {
 
@@ -96,7 +96,8 @@ struct student_record get_student_record()
     return record;
 }
 
-
+// Asks for student's name and saves it to string name
+// param {char * } -- points to struct student_record.name array
 void get_name(char * name)
 {
     char input_name[20];
@@ -108,7 +109,7 @@ void get_name(char * name)
     //printf("Name: %s\n", name);
 }
 
-
+// Gets input from user and returns {int} number of tests.
 int get_number_of_tests(void){
 
     int number_of_tests = 0;
@@ -120,6 +121,10 @@ int get_number_of_tests(void){
     return number_of_tests;
 }
 
+/*
+    Given the number of tests, gets the score for each test
+    returns {double} the sum of the score (to help compute the average later.)
+*/
 double get_scores_for_tests(int number_of_tests, double * scores)
 {
     int i=0;
@@ -182,6 +187,9 @@ char get_letter_grade(double testValue)
 }
 
 
+// Param {struct student_record *}
+// param {int} length of the struct array
+// Prints out each student's record: test average and final grade
 void print_student_records(struct student_record records[], int number_of_students)
 {
     int i;
