@@ -44,8 +44,9 @@ int main(void)
 void print_menu (void)
 {
     printf("\n");
-    printf("========== MENU ==========\nChoose from the following:\n==========================");
-    printf("\n");
+    printf("========== MENU ==========\n");
+    printf("Choose from the following:\n");
+    printf("==========================\n");
     printf("1: Enter data.");
     printf("\n");
     printf("2: Display data.");
@@ -53,7 +54,6 @@ void print_menu (void)
     printf("3: Quit.");
     printf("\n");
     printf("Your choice: ");
-
 }
 
 
@@ -65,6 +65,7 @@ int get_menu_input(void)
 
     fflush(stdout);
 
+    // If the user cancels, it's the same as quitting.
     if (choice == EOF) {
         choice = 3;
     }
@@ -73,3 +74,7 @@ int get_menu_input(void)
     return choice;
 
 }
+
+// get data
+
+

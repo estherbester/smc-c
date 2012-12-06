@@ -56,6 +56,7 @@ int main(int argc, char * argv[])
 
     outfile = fopen(argv[2], "w");
 
+    // gets reads each line at a time, up to the {max_length} number of characters
     while (fgets(line, max_length+1, infile) != NULL)
     {
         fputs(line, outfile);

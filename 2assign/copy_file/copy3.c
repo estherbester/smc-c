@@ -59,6 +59,7 @@ int main(int argc, char * argv[])
     outfile = fopen(argv[2], "w");
 
     fread(filestream, sizeof(char), max_file_size, infile);
+
     while (filestream[i] != '\0' && i < max_file_size)
     {
         fwrite(&filestream[i], sizeof(char), 1, outfile);

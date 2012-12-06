@@ -34,7 +34,8 @@ Compare the sizes of the object code from all five versions of the file copy pro
 int main(int argc, char * argv[])
 {
     char c;
-
+    int max_length = 1024;  // arbitrary limit for line length
+    char * temp_string = (char *) malloc(sizeof(char) * max_length);
     FILE * infile;
     FILE * outfile;
 
@@ -55,10 +56,11 @@ int main(int argc, char * argv[])
 
     outfile = fopen(argv[2], "w");
 
-    // We are going to read every character as a character, nothing else.
-    while (fscanf(infile, "%c", &c) != EOF);
+    // Reads file using fscanf, saves to a temporary string which we then copy to the outfile.
+    while (fscanf(infile, "%s", temp_string) != EOF)
     {
-        fprintf(outfile, "%c", c);
+        fprintf(outfile, "%s", temp_string);
+        fprintf(outfile, "\n", temp_string); // to preserve line breaks
     }
 
     fclose(infile);
