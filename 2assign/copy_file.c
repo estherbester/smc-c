@@ -29,12 +29,17 @@ void copy_file_v4();  // use fscanf () to do the input and fprintf () to do the 
 #include <ctype.h>
 #include <stdarg.h>
 
+
+/*
+    Required arguments:
+    {int} Version of copy command we want to run
+    {string} filename of source file to read from
+    {string} filename of target file to write to.
+
+*/
 int main(int argc, char * argv[])
 {
     int copy_command = (int) argv[1][0] - '0';
-
-    char * source_file = argv[2];
-    char * dest_file = argv[3];
 
 
     if (argc < 4) {
@@ -42,42 +47,30 @@ int main(int argc, char * argv[])
         exit(1);
     }
 
+    printf("Copying from: %s to %s\n", argv[2], argv[3]);
+
+    // based on argv[1] we call whichever version of the copy command we want to run.
     switch(copy_command)
     {
         case 1:
-            copy_file_v1(source_file, dest_file);
+            copy_file_v1(argv[2], argv[3]);
             break;
         case 2:
-            copy_file_v2();
+            copy_file_v2(argv[2], argv[3]);
             break;
         case 3:
-            copy_file_v3();
+            copy_file_v3(argv[2], argv[3]);
             break;
         case 4:
-            copy_file_v4();
+            copy_file_v4(argv[2], argv[3]);
             break;
         default:
             printf("ERROR: Not a valid command number.\n");
             exit(1);
     }
 
-    /*
-    FILE * infile;
-
-    infile = fopen("data.txt", "r");  // creates pointer to first char in that file
-    if (infile == NULL)
-    {
-        printf("File not found\n");
-        exit(0);
-    }
-
-    first = read_data_file(infile);
-
-    fclose(infile);
-
-
     return 0;
-*/
+
 
 }
 
@@ -90,16 +83,16 @@ void copy_file_v1(char source_file[], char dest_file[])
     FILE * infile;
     FILE * outfile;
 
-    char source[255],
-         dest[255];
+    printf("Using fgetc() for input and fputc() for output.\n");
 
-    strcpy(source, source_file);
-    strcpy(dest, dest_file);
+    infile = fopen(source_file, "r");
+    if (infile == NULL)
+    {
+        printf("Error: Source file does not exist.\n");
+        exit(1);
+    }
 
-
-    infile = fopen(source, 'r');
-    outfile = fopen(dest, 'w');
-
+    outfile = fopen(dest_file, "w");
     while ((character = fgetc(infile))!= EOF)
     {
         fputc(character, outfile);
@@ -109,16 +102,109 @@ void copy_file_v1(char source_file[], char dest_file[])
     fclose(outfile);
     printf("\nFinished copying.\n");
 
-
 }
 
 
 // use fgets () to do the input and fputs () to do the output.
-void copy_file_v2()
-{}
-// use fread () to do the input and fwrite () to do the output.
-void copy_file_v3()
-{}
+void copy_file_v2(char source_file[], char dest_file[])
+{
+    int max_length = 79;
+    char line[max_length];
 
-void copy_file_v4()
-{}
+    FILE * infile;
+    FILE * outfile;
+
+    printf("Using fgets() for input and fputs() for output.\n");
+
+    infile = fopen(source_file, "r");
+    if (infile == NULL)
+    {
+        printf("Error: Source file does not exist.\n");
+        exit(1);
+    }
+
+    outfile = fopen(dest_file, "w");
+
+    while (fgets(line, max_length+1, infile) != NULL)
+    {
+        fputs(line, outfile);
+    }
+
+
+    fclose(infile);
+    fclose(outfile);
+    printf("\nFinished copying.\n");
+
+}
+
+
+// use fread() to do the input and fwrite() to do the output.
+void copy_file_v3(char source_file[], char dest_file[])
+{
+
+    int max_file_size = 6400,
+        i=0;
+    char filestream[max_file_size];
+
+    FILE * infile;
+    FILE * outfile;
+
+    printf("Using fread() for input and fwrite() for output.\n");
+
+    infile = fopen(source_file, "r");
+    if (infile == NULL)
+    {
+        printf("Error: Source file does not exist.\n");
+        exit(1);
+    }
+
+    outfile = fopen(dest_file, "w");
+
+    fread(filestream, sizeof(char), max_file_size, infile);
+    while (filestream[i] != '\0' && i < max_file_size)
+    {
+        fwrite(&filestream[i], sizeof(char), 1, outfile);
+        i++;
+    }
+
+    fclose(infile);
+    fclose(outfile);
+    printf("\nFinished copying.\n");
+
+}
+
+
+//use fscanf () to do the input and fprintf () to do the output.
+void copy_file_v4(char source_file[], char dest_file[])
+{
+
+
+    FILE * infile;
+    FILE * outfile;
+
+    printf("Using fscanf() for input and fprintf() for output.\n");
+
+    infile = fopen(source_file, "r");
+    if (infile == NULL)
+    {
+        printf("Error: Source file does not exist.\n");
+        exit(1);
+    }
+
+    outfile = fopen(dest_file, "w");
+
+
+
+    while (fscanf(infile, "")!= EOF);
+    {
+        fprintf(outfile, "");
+    }
+
+
+
+
+    fclose(infile);
+    fclose(outfile);
+    printf("\nFinished copying.\n");
+
+}

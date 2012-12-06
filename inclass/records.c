@@ -23,6 +23,8 @@ void printStudent(struct xrec *);
 void computeGrade(struct xrec *);
 struct xrec * addToList(struct xrec *, struct xrec);
 struct xrec * read_data_file(FILE * infile);
+struct xrec *  deleteFromList(struct xrec * list, char * t);
+void doSort(struct xrec * a, int n);
 
 
 int main(void)
@@ -47,6 +49,11 @@ int main(void)
 	return 0;
 }
 
+
+int displayMenu(void)
+{
+
+}
 
 struct xrec * read_data_file(FILE * infile)
 {
@@ -139,15 +146,45 @@ struct xrec *  deleteFromList(struct xrec * list, char * t)
 	// if .prev contains null, it's the first record
 	// if .next contains NULL, it's the last record
 	for (prev = NULL, curr = list;
-		 (curr != NULL) && (!strcmp(curr->ssn, t) == 0) && (curr->next != NULL);
+		 ((curr != NULL) && (!(strcmp(curr->ssn,t)) == 0));
  		 prev=curr, curr=curr->next)
-	{
+ 		 ;
+	/*{
 		// we want to move the links
 		curr->prev = prev;
 		prev->next = curr;
-	}
+	}*/
 
 	if (prev == NULL) // how to delete the first record?
+	{
+		printf("The first Node was deleted.\n");
+		list=curr->next;
+	}
+	else if (curr!=NULL)
+	{
+		printf("The Node deleted was somewhere in the middle\n");
+		prev->next = curr->next;
+	}
+	free(curr);
 
 	return curr;
+}
+
+
+void doSort(struct xrec * a, int n)
+{
+	int i, j;
+	struct xrec temp;
+	for (i=0; i < n-1; i++)
+	{
+		for (j= i+1; j < n; j++)
+		{
+			if (strcmp(a[i].name, a[j].name) >0)
+			{
+				temp = a[i];
+				a[i] = a[j];
+				a[j]=temp;
+			}
+		}
+	}
 }

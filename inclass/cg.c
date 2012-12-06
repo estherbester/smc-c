@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <string.h>
 
+
+/*
 struct xrec
 {
     float x;
@@ -22,12 +24,12 @@ struct xrec3
 };
 
 
+#typedef float CGPoint // is this allowed?
+*/
+
 #typedef struct xrec CGPoint
 #typedef struct xrec2 CGSize
 #typedef struct xrec3 CGRect
-/*
-#typedef float CGPoint // is this allowed?
-*/
 
 CGRect CGRectMake(float x, float y, int height, int width);
 

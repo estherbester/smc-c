@@ -15,22 +15,19 @@ struct menu_item
 
 
 void print_menu(void);
-struct menu_item get_menu_input(void);
-
-
+int get_menu_input(void);
 
 
 int main(void)
 {
 
     double * data;
-    struct menu_item choice;
+    int choice;
 
     print_menu();
 
     choice = get_menu_input();
 
-    printf("You chose command: %d", choice.command);
 
     return 0;
 }
@@ -46,15 +43,18 @@ void print_menu (void)
     printf("\n");
     printf("3: Quit.");
     printf("\n");
+    printf("Your choice:");
 }
 
 
-struct menu_item get_menu_input(void)
+int get_menu_input(void)
 {
-    struct menu_item choice;
+    int choice;
 
-    scanf("Make your choice: %d", &choice.command);
+    if (scanf("%d", &choice) != EOF);
+    {
+        printf("\n");
 
-    return choice;
-
+        return choice;
+    }
 }
