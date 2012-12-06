@@ -33,7 +33,7 @@ Compare the sizes of the object code from all five versions of the file copy pro
 int main(int argc, char * argv[])
 {
     int max_length = 79;
-    char line[max_length];
+    char * line = malloc(max_length * sizeof(char));
 
     FILE * infile;
     FILE * outfile;
