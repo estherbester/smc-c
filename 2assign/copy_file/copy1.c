@@ -62,7 +62,7 @@ int main(int argc, char * argv[])
 
     outfile = fopen(argv[2], "w");
 
-    // Read using fgetc
+    // Read using fgetc, a character at at ime
     while ((character = fgetc(infile))!= EOF)
     {
         fputc(character, outfile);
