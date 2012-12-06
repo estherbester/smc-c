@@ -53,13 +53,14 @@ int main(void)
     scanf("%d", &number_of_students);
     fflush(stdin);
 
-    printf("You entered: %d\n", number_of_students);
+    printf("You entered: %d students\n", number_of_students);
 
 
     // Create storage for the number of student records we need to save.
     all_records = malloc(number_of_students * sizeof(struct student_record));
     for (i = 0; i < number_of_students; i++)
     {
+        printf("\nEntering record for Student %d:\n", i);
         all_records[i] = get_student_record();
     }
 
@@ -116,7 +117,6 @@ int get_number_of_tests(void){
     scanf("%i", &number_of_tests);
     fflush(stdin);
 
-    printf("\nNow enter grades for all %i tests.\n", number_of_tests);
     return number_of_tests;
 }
 
@@ -144,7 +144,7 @@ double get_test_grade(int index)
 {
     double score = 0.00;
 
-    printf("\nEnter Test Score %d: ", index+1);
+    printf("Enter Test Score %d: ", index+1);
     scanf("%lf", &score);
     fflush(stdin);
 
@@ -185,12 +185,12 @@ char get_letter_grade(double testValue)
 void print_student_records(struct student_record records[], int number_of_students)
 {
     int i;
-    printf("\n========= STUDENT RECORDS ========\n");
+    printf("\n    =========== STUDENT RECORDS ===n");
     printf("    Name\t\tAverage\t\tGrade\n");
 
     for(i=0; i< number_of_students; i++)
     {
-        printf("%2d. %s:\t\t%.2lf\t\t%c\n",
+        printf("%2d. %s\t\t%.2lf\t\t%c\n",
                             i+1,
                             records[i].name,
                             records[i].average_score,
