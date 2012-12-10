@@ -30,7 +30,7 @@ int main(int argc, char * argv[])
 
     int max_file_size = 6400,
         i=0;
-    char filestream[max_file_size];
+    char * filestream = malloc((max_file_size)*(sizeof(int)));
 
     FILE * infile;
     FILE * outfile;

@@ -62,7 +62,7 @@ char * get_digits_from_string(char * string, char * * curr)
 		*(digit_counter++) = *string++;
 	}
 
-	digit_counter='\0'; // terminate our new string
+	*digit_counter='\0'; // terminate our new string
 
 	// Move pointer to the beginning of the non-digit part of the string
 	// by populating its address locaiton with the current location of

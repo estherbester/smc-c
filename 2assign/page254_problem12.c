@@ -34,6 +34,7 @@ int main (void)
 	// Pass array and number of elements to print the contents.
 	print_array_contents(input_values, size);
 
+	return 0;
 }
 
 // Given an array and the size of the array,

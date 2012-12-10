@@ -25,7 +25,7 @@ In the second version, use fgets () to do the input and fputs () to do the outpu
 int main(int argc, char * argv[])
 {
     int max_length = 79;
-    char line[max_length];
+    char * line = malloc((sizeof(int)) * max_length);
 
     FILE * infile;
     FILE * outfile;
