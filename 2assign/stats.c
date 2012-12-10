@@ -45,13 +45,12 @@ double calculate_variance(double * array, int array_length, double mean);
 double calculate_std_dev(double variance);
 struct frequency * calculate_mode(double * array, int);
 void print_mode(struct frequency mode_array[]);
-
 // Deprecated
 double calculate_highest(double * array, double * data_tracker);
 double calculate_lowest(double * array, double * data_tracker);
 
 // Helper functions
-double * sort_array(double * array, double * data_tracker, int length);
+double * sort_array(double * array, int length);
 void copy_array(double new_array_to_return[], double original_array[], int length);
 
 // Used only for debugging
@@ -184,7 +183,7 @@ void show_calculations(double array[], double * data_tracker)
     sum = get_data_sum(array, array_length);
 
     // Create a new array, which contains sorted values
-    sorted_array = sort_array(array, data_tracker, array_length);
+    sorted_array = sort_array(array, array_length);
 
     // We can use the new, sorted array to find the next two data stats.
     lowest = sorted_array[0];
@@ -363,7 +362,7 @@ double calculate_std_dev(double variance)
 /*
     Returns a pointer to an array representing the sorted copy of the original array
 */
-double * sort_array(double * array, double * data_tracker, int array_length)
+double * sort_array(double * array, int array_length)
 {
     double * sorted_array;
     double temp;
