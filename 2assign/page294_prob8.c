@@ -28,7 +28,7 @@ int main (void)
 
 	char string[200];  // String we want
 
-	char ** curr = &string;  // Pointer to first char in string that is not a digit, initialized to beginnign of string
+	char * curr = string;  // Pointer to first char in string that is not a digit, initialized to beginnign of string
 
 	char * digit_string;  // We will extract the digits from the string we get and save it here to convert.
 
@@ -36,19 +36,19 @@ int main (void)
 
 	scanf("%s", string);
 
-	digit_string = get_digits_from_string(string, curr);
+	digit_string = get_digits_from_string(string, &curr);
 
 	intval = convert(digit_string);
 
-	printf("Number value is %d.\n", intval);
+	printf("String has number value of: %d.\n", intval);
 
-	printf("The rest of the string is %s", *curr);
+	printf("The rest of the string is: \"%s\"\n", curr);
 	return 0;
 
 }
 
 
-char * get_digits_from_string(char * string, char ** curr)
+char * get_digits_from_string(char * string, char * * curr)
 {
 	int length = strlen(string);
 
@@ -65,7 +65,9 @@ char * get_digits_from_string(char * string, char ** curr)
 	digit_counter='\0'; // terminate our new string
 
 	// Move pointer to the beginning of the non-digit part of the string
-	* curr = digit_counter++;
+	// by populating its address locaiton with the current location of
+	// our original string pointer
+	*curr = string;
 
 	return digit_string;
 
