@@ -10,10 +10,12 @@
 #include <stdlib.h>
 #include <math.h>
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
 
 void fill_array(int * array, int size);
 void print_array_contents(int * array, int size);
+
 
 int main (void)
 {
@@ -23,53 +25,58 @@ int main (void)
 	printf("How many integers do you wish to enter? ");
 	scanf("%d", &size);
 
-	input_values = malloc(size * sizeof(int) + 1);
+	// Allocate memory for the array
+	input_values = malloc(size * sizeof(int));
 
-	// Pass the array and number of elements as params
+	// Pass the array and number of elements as params, fill array.
 	fill_array(input_values, size);
 
+	// Pass array and number of elements to print the contents.
 	print_array_contents(input_values, size);
 
 }
 
-// Given an array and the size of the array, fill the array with integer values
+// Given an array and the size of the array,
+// fill the array with integer values
 void fill_array(int * array, int size)
 {
-	int value,  // assign the address of array to pointer n
-		i=0;
+	int value,  // This will be the input value to put into array
+		i;
 
 	int * pointer = array;  // local pointer variable, assigned to address of array
 
-	printf("\nEnter up to %d integers. Hit Ctrl-D if done.\n", size);
+	printf("\nEnter up to %d integers (hit Ctrl-D if done):\n", size);
 
-	for (i; i<size; i++)
+	for (i=0; i<size; i++)
 	{
 		if (scanf("%d", &value) != EOF)
 		{
-			*pointer = value;
+			// Make sure we've got an integer
+			*(++pointer) = value;
 		}
 		else
 		{
-			*pointer = '\0';
+			printf("You have not filled up the array! Padding the rest of the array with zeroes\n");
+			break;
 		}
-		pointer++;
 	}
 }
 
-// Given an array and the number of elements in the array, print the values in
-// the array.
+// Given an array and the number of elements in the array,
+// print the values in the array.
 void print_array_contents(int * array, int size)
 {
-	int i=0; // counter for size
+	int i=0;
 	int * pointer = array;  // local pointer variable
 
-	printf("\nNow printing array contents:");
-	while (i < size)
+	// Output a comma-separated list of the array elements
+	printf("\nNow printing array contents: ");
+	while (++i < size)
 	{
-		if (*pointer != '\0')
-			printf("\n%d", *pointer);
-		i++;
-		pointer++;
+		printf("%d, ", *(++pointer));
 	}
-	printf("\n");
+
+	// Print the last array item without a comma
+	printf("%d\n", *(++pointer));
+
 }

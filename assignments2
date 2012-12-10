@@ -19,16 +19,7 @@ In the fourth version, use fscanf () to do the input and fprintf () to do the ou
 
 
 
-COMPARE THE SIZES OF THE OBJECT CODE FROM ALL FIVE VERSIONS OF THE FILE COPY PROGRAMS. IF THE FACILITIES FOR TESTING EXECUTION EFFICIENCY ARE AVAILABLE ON YOUR SYSTEM, TEST THE EFFICIENCY OF EACH VERSION. REPORT ON YOUR FINDINGS.
-
-
-=====================================================================================================
-
-
-Page 254/ Prob.12
-12.  a. Write a C function that will input values into an array of type int. Have the array and the number of elements in the array passed as parameters to your function. Use a local pointer variable to traverse the array.
-b. Write a C function that will output the contents of an array of type int. Have the array and the number of elements in the array passed as parameters. Use a local pointer variable to traverse the array.
-
+compare the sizes of the object code from all five versions of the file copy programs. if the facilities for testing execution efficiency are available on your system, test the efficiency of each version. report on your findings.
 
 
 =====================================================================================================
@@ -67,8 +58,6 @@ Quit the Program
 
 
 =====================================================================================================
-
-
 
 Page 294/ Prob. 8
 8.      a.  Write a function in C that takes an array of char and a char ** expression as parameters. The array of type char would contain a string the possibly starts with a sequence of decimal digits. Have the function convert the sequence of decimal digits it finds to type int and return the converted value. Have the function set the contents of its second parameter (a char * value) to point to the first character in the array that was not converted. For example, if the function was called convert () and the call to convert () was
@@ -122,6 +111,11 @@ In the preceding double-subscripted array, the #s represent the walls of the maz
     There is a simple algorithm for walking through a maze that guarantees finding the exit (assuming there is an exit). If there is not an exit, you will arrive at the starting location again. Place your right hand on the wall to your right and begin walking forward. Never remove your hand from the wall.  If the maze turns to the right, you follow the wall to the right.  As long as you do not remove your hand from wall, eventually you will arrive at the exit of the maze.  There may be a shorter path than the one you have taken, but you are guaranteed to get out of the maze if you follow the algorithm.
 
     Write recursive function mazeTraverse to walk through the maze.  The function should receive as arguments a 12-by-12 character array representing the maze, and the starting location of the maze.  As mazeTraverse attempts to locate the exit from the maze, it should place the character X in each square in the path.  The function should display the maze after each move so the user can watch as the maze is solved.
+
+
+
+
+
 
 
 
@@ -198,3 +192,16 @@ AverageGrade
 Write a complete program that prompts how many students? reads the number.
 Make a loop for that many students, prompts the first student for name and how many tests, get name, number of tests. Make a loop to sum all of her/his tests and compute the average of her/his test. Your program should output student name, test average and a letter grade. NOTE: to get credit you must write at least one function.
 Note: To assign the letter grade use (if  average >= 90, A, >=80, B etc.).
+
+
+
+
+
+
+=====================================================================================================
+
+
+Page 254/ Prob.12
+12.  a. Write a C function that will input values into an array of type int. Have the array and the number of elements in the array passed as parameters to your function. Use a local pointer variable to traverse the array.
+b. Write a C function that will output the contents of an array of type int. Have the array and the number of elements in the array passed as parameters. Use a local pointer variable to traverse the array.
+
