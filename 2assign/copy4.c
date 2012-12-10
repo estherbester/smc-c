@@ -48,7 +48,7 @@ int main(int argc, char * argv[])
     outfile = fopen(argv[2], "w");
 
     // We are going to read every character as a character, nothing else.
-    while (fscanf(infile, "%c", &c) != EOF);
+    while (fscanf(infile, "%c", &c) != EOF)
     {
         fprintf(outfile, "%c", c);
     }
