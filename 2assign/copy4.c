@@ -50,6 +50,7 @@ int main(int argc, char * argv[])
     // We are going to read every character as a character, nothing else.
     while (fscanf(infile, "%c", &c) != EOF)
     {
+        printf("%c", c);
         fprintf(outfile, "%c", c);
     }
 
