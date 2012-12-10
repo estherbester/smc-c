@@ -129,21 +129,13 @@ void get_user_data(double array[], double * data_tracker)
 {
     int i = 0;
 
-    double data_point = 294.00;
+    double data_point;
 
     printf("Enter one data item at every prompt, pressing <Enter> after each data item for the next prompt.\n");
     printf("\nSignal with <Ctrl-D> when you are done with data input.\n");
 
-    while (i < MAX_ITEMS )//&& scanf("%lf", &data_point) != EOF)
+    while (i < MAX_ITEMS && (scanf("%lf", &data_point) != EOF))
     {
-
-        // DURING DEBUG
-
-        if (i>0 && i<9)
-        {}
-
-        else
-            data_point = data_point - 1.00;
         // fill the array cell denoted by data_tracker pointer with the user's value
         *data_tracker++ = data_point;
         i++;
@@ -185,15 +177,15 @@ void display_user_data(double array[], double * data_tracker)
 
     printf("\n2. Display Data Stats:\n");
     printf("----------------------");
-    printf("\n%10s\t%4.4lf","Sum:", sum);
-    printf("\n%10s\t%4.4lf","Highest:", highest);
-    printf("\n%10s\t%4.4lf","Lowest:", lowest);
-    printf("\n%10s\t%4.4lf","Mean:", mean);
-    printf("\n%10s\t%4.4lf","Median:", median);
+    printf("\n%10s\t%6.2lf","Sum:", sum);
+    printf("\n%10s\t%6.2lf","Highest:", highest);
+    printf("\n%10s\t%6.2lf","Lowest:", lowest);
+    printf("\n%10s\t%6.2lf","Mean:", mean);
+    printf("\n%10s\t%6.2lf","Median:", median);
     printf("\n%10s\t","Mode(s):");
     print_mode(mode);
-    printf("\n%10s\t%4.4lf","Variance:", variance);
-    printf("\n%10s\t%4.4lf","Std_dev:", std_dev);
+    printf("\n%10s\t%6.2lf","Variance:", variance);
+    printf("\n%10s\t%6.2lf","Std_dev:", std_dev);
     printf("\n----------------------");
     printf("\n");
     printf("Press CTRL+Z to continue ");
@@ -314,7 +306,7 @@ void print_mode(struct frequency mode_array[])
     // Presumably anything that's not the same count old values that were not written over
     while (current_point->count >= mode_array->count)
     {
-        printf("%3lf (%d occurrences) ", *(current_point++->address), current_point->count);
+        printf("%6.2lf (%d occurrences) ", *(current_point++->address), current_point->count);
     }
 }
 
