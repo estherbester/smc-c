@@ -28,21 +28,23 @@ struct frequency
 };
 
 // Menu program functions
+void run_program(double * array, double * data_tracker);
 void print_menu(void);
 void exit_program(void);
-void display_user_data(double *, double * data_tracker);
 void get_user_data(double *, double *);
-void run_program(double * array, double * data_tracker);
+void display_user_data(double *, double * data_tracker);
+void show_calculations(double array[], double * data_tracker);
+
 //void clear_buffer(void);
 
 // Statistics functions
-double get_data_sum(double *, int);
-double calculate_mean(double * array, double sum, int length);
+double get_data_sum(double * array, int length);
+double calculate_mean(double sum, int length);
 double calculate_median(double * array, int array_length);
-struct frequency * calculate_mode(double * array, int);
-void print_mode(struct frequency mode_array[]);
 double calculate_variance(double * array, int array_length, double mean);
 double calculate_std_dev(double variance);
+struct frequency * calculate_mode(double * array, int);
+void print_mode(struct frequency mode_array[]);
 
 // Deprecated
 double calculate_highest(double * array, double * data_tracker);
@@ -94,7 +96,7 @@ void run_program(double * data, double * data_tracker)
             break;  // we don't really need this
         default:
             printf("\nUnknown command. ");
-            exit_program();
+            run_program(data, data_tracker);
             break;  // we don't really need this
     }
 
@@ -143,11 +145,29 @@ void get_user_data(double array[], double * data_tracker)
     run_program(array, data_tracker);
 }
 
+
+// Determine whether to display statistics, or handle when there
+// has not been any data entered yet.
+void display_user_data(double array[], double * data_tracker)
+{
+    if (data_tracker == array)
+    {
+        printf("\nData has not been entered!");
+    }
+    else
+    {
+        show_calculations(array, data_tracker);
+    }
+    run_program(array, data_tracker);
+
+}
+
+
 /*
     Given an array of floating point numbers, calculate the various stats and
     display them.
 */
-void display_user_data(double array[], double * data_tracker)
+void show_calculations(double array[], double * data_tracker)
 {
     double  sum = 0,
             highest,
@@ -166,10 +186,11 @@ void display_user_data(double array[], double * data_tracker)
     // Create a new array, which contains sorted values
     sorted_array = sort_array(array, data_tracker, array_length);
 
+    // We can use the new, sorted array to find the next two data stats.
     lowest = sorted_array[0];
     highest = sorted_array[array_length-1];
 
-    mean = calculate_mean(array, sum, array_length);
+    mean = calculate_mean(sum, array_length);
     median = calculate_median(sorted_array, array_length);
     mode = calculate_mode(sorted_array, array_length);
     variance = calculate_variance(array, array_length, mean);
@@ -187,13 +208,12 @@ void display_user_data(double array[], double * data_tracker)
     printf("\n%10s\t%6.2lf","Variance:", variance);
     printf("\n%10s\t%6.2lf","Std_dev:", std_dev);
     printf("\n----------------------");
-    printf("\n");
-    printf("Press CTRL+Z to continue ");
+    printf("\nNumber of items: %d\n", array_length);
+    printf("\nPress CTRL+Z to continue ");
     printf("\n\n");
     fflush(stdout);
     while (scanf("%c", &c) != EOF);
 
-    run_program(array, data_tracker);
 }
 
 
@@ -214,12 +234,11 @@ double get_data_sum(double * array, int number_of_items)
     {
         running_total += array[i];
     }
-    printf("\nTotal number of items: %d\n", number_of_items);
     return running_total;
 }
 
 
-double calculate_mean(double * array, double sum, int number_of_items)
+double calculate_mean(double sum, int number_of_items)
 {
     return (double) sum/number_of_items;
 }
@@ -258,7 +277,7 @@ double calculate_median(double * array, int array_length)
 struct frequency * calculate_mode(double * sorted_array, int array_length)
 {
     // Potentially every number is a mode, e.g. if each number is unique!
-    struct frequency * mode_array = malloc(sizeof(struct frequency) * array_length);
+    struct frequency * mode_array = malloc((sizeof(struct frequency)) * array_length);
     struct frequency * current_counter = mode_array;  // Start our tracker at the beginning
 
     int i=0,
