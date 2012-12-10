@@ -50,7 +50,6 @@ int main(void)
     // Get the number of students - we need to create a record for each student.
     printf("How many students? ");
     scanf("%d", &number_of_students);
-    //fflush(stdin);
 
     printf("You entered: %d students\n", number_of_students);
 
@@ -111,7 +110,6 @@ void get_name(char * name)
     printf("What is the student's name? ");
 
     scanf("%s", input_name);
-    //fflush(stdin);
     strcpy(name, input_name);
 }
 
@@ -125,7 +123,6 @@ int get_number_of_tests(void){
 
     printf("How many tests taken? ");
     scanf("%i", &number_of_tests);
-    //fflush(stdin);
 
     return number_of_tests;
 }
@@ -164,7 +161,6 @@ double get_test_grade(int index)
 
     printf("Enter Test Score %d: ", index+1);
     scanf("%lf", &score);
-    //fflush(stdin);
 
     return score;
 }
@@ -207,7 +203,7 @@ char get_letter_grade(double testValue)
 void print_student_records(struct student_record records[], int number_of_students)
 {
     int i;
-    printf("\n========== STUDENT RECORDS ==========\n");
+    printf("\n============= STUDENT RECORDS =============\n");
     printf("    %-20s%8s %10s\n", "Name", "Average", "Grade");
 
     for(i=0; i< number_of_students; i++)

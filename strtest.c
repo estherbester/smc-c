@@ -1,39 +1,28 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <string.h>
 
 
 
 int main (void)
 {
-    char * y;     // declaring an array for a string
+    char * y = "0123456789";     // declaring an array for a string
     int i=0;
-    y = "Sally";  // this is the string
+    char * x = y;
 
-    char * x[10]; // array of 10 names
+    printf("\nFirst way x++: ");
+    for (i=0;i<(int) sizeof(char) * strlen(y) ;i++)
+    {
 
-//    x[0] = malloc(sizeof(y) * sizeof(char)) ;
+        printf("%c, ",*x++ );
 
-    x[0] = y;
-
-    printf("x** is: %c", **x);
-    printf("\n");
-    printf("*x[0] is: %c", *x[0]);
-    printf("\n");
-
-    printf("x[0][3] is: %c", x[0][3]);
-    printf("\n");
-    printf("(*x)[3] is: %c", (*x)[3]);
-    printf("\n");
-
-    printf("*x[3] is: %c", *x[3]);
-    printf("\n");
-    printf("\n");
-
-   for (i=0; i<9; i++){
-       printf("(*x)[%i] is:  %c, address: %p\t || *x[%i] is %p", i, (*x)[i], &((*x)[i]), i, &(*x[i]));
-       printf("\n");
-   }
-
+    }
+    printf("\nOther way: ++x ");
+    x = y;
+    for (i=0;i<(int) sizeof(char) * strlen(y) ;i++)
+    {
+        printf("%c, ",*(++x) );
+    }
    return 0;
 
 
