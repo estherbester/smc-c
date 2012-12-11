@@ -18,7 +18,7 @@ or the end-of-file symbol on your system.
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_ITEMS 19
+#define MAX_ITEMS 200
 
 // Used to calculate the mode
 struct frequency
@@ -75,9 +75,13 @@ void run_program(double * data, double * data_tracker)
 {
 
     int choice;
-
+    char input[2];
     print_menu();
-    scanf("%d", &choice);
+
+    fflush(stdout);
+    // Get the user input as a string (we only want one char so this is safe)
+    if (gets(input))
+        choice = input[0]-'0';
 
     printf("You chose command: %d\n", choice);
 
@@ -100,7 +104,6 @@ void run_program(double * data, double * data_tracker)
     }
 
 }
-
 
 void print_menu (void)
 {
@@ -285,6 +288,7 @@ struct frequency * calculate_mode(double * sorted_array, int array_length)
     // Initialize our tracker array, mode_array, with the first value from our params
     current_counter->address = sorted_array;
     current_counter->count=1;
+    printf("\nCurrent mode: %lf, %d", *(current_counter->address), current_counter->count);
 
     do
     {
@@ -307,8 +311,8 @@ struct frequency * calculate_mode(double * sorted_array, int array_length)
         {
             // New winner!  Put our tracker pointer back to the beginning of our
             // tracker array (we want to overwrite old value and start from zero)
-            mode_array[0] = *current_counter;
             highest_frequency = current_counter->count;
+            mode_array[0] = *current_counter;
         }
         i++;
     }
@@ -321,10 +325,23 @@ void print_mode(struct frequency mode_array[])
 {
     struct frequency * current_point = mode_array;
 
-    // Presumably anything that's not the same count old values that were not written over
-    while (current_point->count >= mode_array->count)
+    // If all our data points are unique we don't want to print out all the numbers
+    if (current_point->count > 1)
     {
-        printf("%6.2lf (%d occurrences) ", *(current_point++->address), current_point->count);
+        // Presumably the first item in our mode_array is the value that occurs
+        // with the most frequency. Keep traversing our mode_array until we
+        // get to a count that is lower than the highest mode count (in case we have
+        // more than one mode).
+        while (current_point->count >= mode_array->count)
+        {
+            printf("%6.2lf (%d occurrences) ", *(current_point->address), current_point->count);
+            current_point++;
+
+        }
+    }
+    else
+    {
+        printf("All unique numbers");
     }
 }
 
