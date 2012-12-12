@@ -334,8 +334,7 @@ void print_mode(struct frequency mode_array[])
         while (current_point->count >= mode_array->count)
         {
             printf("%6.2lf (%d occurrences) ", *(current_point->address), current_point->count);
-            current_point++;
-            if (current_point->address == mode_array->address)  // We've already shown it! This is leftovers
+            if ((++current_point)->address == mode_array->address)  // We've already shown it! This is leftovers
                 break;
         }
     }
